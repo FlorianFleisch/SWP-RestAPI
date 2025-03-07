@@ -12,6 +12,8 @@ namespace Rest_API.Controllers
         public IActionResult Numberadding(int number)
         {
             int numberplusone = number + 1;
+            if(number<10)
+            { return BadRequest("Number was samller then 10"); }
 
             return Ok(numberplusone);
         }
@@ -44,5 +46,5 @@ namespace Rest_API.Controllers
         }
     }
 }
-//curl -X PUT http://localhost:5059/api/Addiert1zuInput/5
+
 
