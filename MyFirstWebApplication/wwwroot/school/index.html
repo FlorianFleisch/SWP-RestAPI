@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Schulverwaltung</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Schüler hinzufügen:</h2>
+    <input id="vorname" placeholder="Vorname">
+    <input id="nachname" placeholder="Nachname">
+    <select id="geschlecht">
+        <option value="Männlich">Mann</option>
+        <option value="Weiblich">Frau</option>
+    </select>
+    <input id="geburtsdatum" type="date">
+    <input id="schoolClass" placeholder="Klasse">
+    <button onclick="addStudent()">Schüler hinzufügen</button>
+
+    <h2>Schüler löschen:</h2>
+    <input id="deleteSchoolClass" placeholder="Klasse (z.B. 3aWI)">
+    <input id="deleteGeburtsdatum" type="date">
+    <button onclick="deleteStudent()">Schüler löschen</button>
+
+    <h2>Alle Schüler anzeigen:</h2>
+    <button onclick="getStudents()">Schüler anzeigen</button>
+    <ul id="studentsList"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
