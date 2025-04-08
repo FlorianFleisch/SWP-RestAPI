@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using Microsoft.EntityFrameworkCore; // Wichtig für Include, etc.
 
 namespace MyEFCoreApp
 {
@@ -7,33 +6,33 @@ namespace MyEFCoreApp
     {
         static void Main(string[] args)
         {
-            // Erstellen und Öffnen des DbContext
             using (var context = new AppDbContext())
             {
-                // Sicherstellen, dass die Datenbank und alle Tabellen existieren
+                // Sicherstellen, dass die Datenbank erstellt ist
                 context.Database.EnsureCreated();
 
-                // Einen neuen Datensatz erzeugen
-                var person = new Person
+                var city = new City("Wien");
+
+                // Neue Person anlegen und direkt der Stadt zuweisen
+                var person = new Person("Hugo", 109)
                 {
-                    Name = "John Doe",
-                    Age = 30
+                    City = city
                 };
 
-                // Den Datensatz zur Tabelle hinzufügen
+                // Objekte hinzufügen
+                context.Cities.Add(city);
                 context.People.Add(person);
 
-                // Änderungen speichern (erstellt die Tabelle, falls sie noch nicht existiert)
+                // Änderungen speichern
                 context.SaveChanges();
 
-                // Alle Datensätze aus der Tabelle auslesen und in der Konsole anzeigen
+                // Daten auslesen
                 var allPeople = context.People.ToList();
                 foreach (var p in allPeople)
                 {
                     Console.WriteLine($"ID: {p.Id}, Name: {p.Name}, Age: {p.Age}");
                 }
             }
-
             Console.WriteLine("Fertig. Beliebige Taste zum Beenden drücken...");
             Console.ReadKey();
         }

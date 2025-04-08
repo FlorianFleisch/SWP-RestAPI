@@ -5,6 +5,7 @@ namespace MyEFCoreApp
     public class AppDbContext : DbContext
     {
         public DbSet<Person> People { get; set; }
+        public DbSet<City> Cities { get; set; } // Neue Tabelle für Cities
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
