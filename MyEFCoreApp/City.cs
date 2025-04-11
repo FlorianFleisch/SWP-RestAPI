@@ -2,8 +2,9 @@
 {
     public class City
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
+        public string? PLZ { get; set; }
 
         // Navigation Property: Eine Stadt hat eine Liste von Bewohnern (Personen)
         public List<Person> Residents { get; set; } = new List<Person>();

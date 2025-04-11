@@ -8,16 +8,12 @@ namespace MyEFCoreApp
         {
             using (var context = new AppDbContext())
             {
-                // Sicherstellen, dass die Datenbank erstellt ist
-                context.Database.EnsureCreated();
-
+                context.Database.Migrate();
                 var city = new City("Wien");
 
                 // Neue Person anlegen und direkt der Stadt zuweisen
-                var person = new Person("Hugo", 109)
-                {
-                    City = city
-                };
+                var person = new Person("Hugo", 109);
+                city.AddResidentToCity(person);
 
                 // Objekte hinzufügen
                 context.Cities.Add(city);
@@ -30,7 +26,7 @@ namespace MyEFCoreApp
                 var allPeople = context.People.ToList();
                 foreach (var p in allPeople)
                 {
-                    Console.WriteLine($"ID: {p.Id}, Name: {p.Name}, Age: {p.Age}");
+                    Console.WriteLine($"ID: {p.ID}, Name: {p.Name}, Age: {p.Age}");
                 }
             }
             Console.WriteLine("Fertig. Beliebige Taste zum Beenden drücken...");
